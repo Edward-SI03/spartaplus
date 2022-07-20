@@ -6,7 +6,7 @@ from pymongo import MongoClient
 import requests
 from selenium.webdriver.common.by import By
 
-client = MongoClient('15.165.158.21', 27017, username="test", password="sparta")
+client = MongoClient('15.165.158.21', 27017, username="test", password="test")
 db = client.dbsparta_plus_week3
 
 driver = webdriver.Chrome('./chromedriver')
@@ -14,14 +14,14 @@ driver = webdriver.Chrome('./chromedriver')
 url = "http://matstar.sbs.co.kr/location.html"
 
 driver.get(url)
-time.sleep(5)
+time.sleep(3)
 
 
-for i in range(10):
+for i in range(3):
     try:
         btn_more = driver.find_element(By.CSS_SELECTOR, "#foodstar-front-location-curation-more-self > div > button")
         btn_more.click()
-        time.sleep(5)
+        time.sleep(3)
     except NoSuchElementException:
         break
 
@@ -39,7 +39,7 @@ for place in places:
     category = place.select_one("div.box_module_cont > div > div > div.mil_inner_kind > span.il_text").text
     show, episode = place.select_one("div.box_module_cont > div > div > div.mil_inner_tv > span.il_text").text.rsplit(
         " ", 1)
-    print(title, address, category, show, episode)
+    # print(title, address, category, show, episode)
 
     headers = {
         "X-NCP-APIGW-API-KEY-ID": "fofu1wn0x3",
